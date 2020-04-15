@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/materialize.min.css">
+		<link rel="stylesheet" href="css/materialize-icons.css">
+		<style>
+			body {
+				min-width: 500px; /* your desired width */
+				max-width: 100%;
+				margin: 0;
+			}
+			
+			nav {
+				height: 30px;
+				line-height: 20px;
+			}
+			
+			nav .brand-logo {
+				left: 0%;
+				-webkit-transform: translateX(0%);
+				transform: translateX(0%);
+				padding: 5px;
+				font-size: 20px;
+			}
+			
+			.form {
+				margin: 10px;
+			}
+			
+			.row {
+				margin-bottom: 0px;
+			}
+			
+			nav .right {
+				margin-top: 3px;
+			}
+			nav .status {
+				margin-right: 10px;
+			}
+			
+			.btn-tiny {
+				height: 18px;
+				line-height: 18px;
+				font-size: 8px;
+				padding: 0 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Chaturbate Settings</a>
+				<div class="right status" id="cb_status">
+					<img src="icons/cb-grey.png" />
+				</div>
+				<div class="right switch">
+					<label>
+						<input type="checkbox" id="cb_enable">
+						<span class="lever"></span>
+					</label>
+				</div>
+			</div>
+		</nav>
+		<div class="form">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="cb_username" type="text" class="validate" disabled>
+					<label for="cb_username">Chaturbate Username</label>
+				</div>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">OBS Settings</a>
+				<div class="right status" id="obs_status">
+					<img src="icons/obs-grey.png" />
+				</div>
+				<div class="right switch">
+					<label>
+						<input type="checkbox" id="obs_enable">
+						<span class="lever"></span>
+					</label>
+				</div>
+			</div>
+		</nav>
+		<div class="form">
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="obs_ip_address" type="text" class="validate">
+					<label for="obs_ip_address">IP Address</label>
+				</div>
+				<div class="input-field col s2">
+					<input id="obs_port" type="text" class="validate">
+					<label for="obs_port">Port</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="obs_password" type="password" class="validate">
+					<label for="obs_password">Password</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<select id="obs_source">
+						<option value="" disabled selected>Source</option>
+					</select>
+					<label>Source</label>
+				</div>
+				<div class="input-field col s6">
+					<select id="obs_filter">
+						<option value="" disabled selected>Filter</option>
+					</select>
+					<label>Filter</label>
+				</div>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Filter Settings</a>
+			</div>
+		</nav>
+		<div class="form">
+			<div id="filters"></div>
+			<div class="row center-align">
+				<a class="btn-small btn-tiny red" id="add_filter"><i class="material-icons">add</i></a>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Tip Range Settings</a>
+			</div>
+		</nav>
+		<div class="form">
+			<div id="tip_ranges"></div>
+			<div class="row center-align">
+				<a class="btn-small btn-tiny red" id="add_tip_range"><i class="material-icons">add</i></a>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Debug Settings</a>
+			</div>
+		</nav>
+		<div class="form">
+			<div class="row">
+				<div class="input-field col s4">
+					<div class="switch">
+						<label>
+							Logging
+							<input type="checkbox" id="log_enable">
+							<span class="lever"></span>
+						</label>
+					</div>
+				</div>
+				<div class="input-field col s4">
+				</div>
+				<div class="input-field col s4">
+					<div style="float: left; padding-right: 20px;"><label>Reset</label></div> <a class="btn-small btn-tiny" id="reset_settings"><i class="material-icons">undo</i></a>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/materialize.min.js"></script>
+		<script src="js/uuidv4.min.js"></script>
+		<script src="js/sm-settings.js"></script>
+		<script src="js/sm-comms.js"></script>
+		<script src="js/sm-logger.js"></script>
+		<script src="js/sm-ui.js"></script>
+	</body>
+</html>

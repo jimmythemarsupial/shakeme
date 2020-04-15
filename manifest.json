@@ -1,0 +1,34 @@
+{
+	"name": "ShakeMe",
+	"version": "1.2",
+	"description": "Shake the screen on chaturbate tips",
+	"manifest_version": 2,
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"scripts": [
+			"js/sm-background.js",
+			"js/jquery-3.4.1.min.js",
+			"js/materialize.min.js",
+			"js/sockjs.min.js",
+			"js/obs-websocket.js",
+			"js/sm-settings.js",
+			"js/sm-comms.js",
+			"js/sm-logger.js",
+			"js/sm-obs.js",
+			"js/sm-chaturbate.js"
+		],
+		"persistent": true
+	},
+	"permissions": [
+		"declarativeContent",
+		"storage",
+		"https://chaturbate.com/api/chatvideocontext/*",
+		"https://*.stream.highwebmedia.com/ws"
+	],
+	"icons": {
+		"16": "icons/vibration-16.png",
+		"128": "icons/vibration-128.png"
+	}
+}
