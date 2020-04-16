@@ -1,6 +1,6 @@
 {
 	"name": "ShakeMe",
-	"version": "1.2",
+	"version": "1.3",
 	"description": "Shake the screen on chaturbate tips",
 	"manifest_version": 2,
 	"browser_action": {

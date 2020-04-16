@@ -67,10 +67,48 @@ class SMOBS {
 				return obs.disconnect();
 			case 'runFilter':
 				return obs.runFilter(msg.source, msg.filter, msg.filter_settings, msg.duration);
+			case 'getQueue':
+				return obs.getQueue();
+			case 'clearQueue':
+				return obs.clearQueue();
 			default:
 				logger.log('Unknown command ' + msg.cmd);
 				return false;
 		}
+	}
+	
+	
+	/***********************************************************************************************
+	*
+	*
+	***********************************************************************************************/
+	getQueue() {
+		logger.log('getQueue');
+		logger.log(this.queue);
+		var info = { size: 0, time: 0 };
+		for (var i = 0; i < this.queue.length; i++)
+		{
+			info.size++;
+			info.time += this.queue[i].duration;
+			if (this.queue[i].started)
+			{
+				info.time -= Math.floor((Date.now() - this.queue[i].started) / 1000);
+			}
+		}
+		return info;
+	}
+	
+	
+	/***********************************************************************************************
+	*
+	*
+	***********************************************************************************************/
+	clearQueue() {
+		if (this.queue.length)
+		{
+			this.disableFilter(this.queue[0]);
+		}
+		this.queue = [ ];
 	}
 	
 	
@@ -106,13 +144,15 @@ class SMOBS {
 			}
 			else
 			{
-				return this.queue.push(info);
+				this.queue.push(info);
+				return;
 			}
 		}
 		else
 		{
 			this.queue.push(info);
 		}
+		info.started = Date.now();
 		logger.log('Enabling filter ' + this.queue.length);
 		this.socket.send('GetSourceFilterInfo', { sourceName: info.source, filterName: info.filter }).then(function(response) {
 			logger.log('GetSourceFilterInfo');

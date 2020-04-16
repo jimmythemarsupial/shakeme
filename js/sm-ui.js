@@ -948,6 +948,54 @@ class SMUIDebug {
 *
 *
 ***************************************************************************************************/
+class SMUIQueue {
+	
+	
+	/***********************************************************************************************
+	*
+	*
+	***********************************************************************************************/
+	constructor() {
+		this.setupReset();
+		this.updateValues();
+		this.counter = setInterval(function() { ui.queue.updateValues(); }, 1000);
+	}
+	
+	
+	/***********************************************************************************************
+	*
+	*
+	***********************************************************************************************/
+	updateValues() {
+		comms.send({ rcpt: 'obs', payload: { cmd: 'getQueue' } }, function(info) {
+			logger.log('QUEUE VALUES');
+			logger.log(info);
+			$('#qsize').val(info.size);
+			$('#qtime').val(info.time);
+		});
+	}
+	
+	
+	/***********************************************************************************************
+	*
+	*
+	***********************************************************************************************/
+	setupReset() {
+		var _this = this;
+		$('#reset_queue').click(function() {
+			logger.log('Resetting queue');
+			comms.send({ rcpt: 'obs', payload: { cmd: 'clearQueue' } });
+		});
+	}
+	
+	
+}
+
+
+/***************************************************************************************************
+*
+*
+***************************************************************************************************/
 class SMUI {
 	
 	
@@ -962,6 +1010,7 @@ class SMUI {
 		this.obs = new SMUIOBS();
 		this.filters = new SMUIFilters();
 		this.tipranges = new SMUITipRanges();
+		this.queue = new SMUIQueue();
 		 M.AutoInit();
 	}
 	
@@ -981,6 +1030,8 @@ class SMUI {
 				return ui.obs.updateOBSStatus(msg.status);
 			case 'updateCBStatus':
 				return ui.cb.updateCBStatus(msg.status);
+			case 'updateQueue':
+				return ui.queue.updateQueue(msg.size, msg.time);
 			default:
 				return false;
 		}

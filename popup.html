@@ -49,6 +49,26 @@
 	<body>
 		<nav>
 			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Queue Management</a>
+			</div>
+		</nav>
+		<div class="form">
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="qsize" type="text" class="validate" value="0" disabled>
+					<label for="qsize">Queue Size</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="qtime" type="text" class="validate" value="0" disabled>
+					<label for="qtime">Queued Time</label>
+				</div>
+				<div class="input-field col s4">
+					<div style="float: left; padding-right: 20px;"><label>Reset</label></div> <a class="btn-small btn-tiny" id="reset_queue"><i class="material-icons">undo</i></a>
+				</div>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
 				<a href="#" class="brand-logo">Chaturbate Settings</a>
 				<div class="right status" id="cb_status">
 					<img src="icons/cb-grey.png" />
