@@ -89,7 +89,7 @@ class SMOBS {
 		for (var i = 0; i < this.queue.length; i++)
 		{
 			info.size++;
-			info.time += this.queue[i].duration;
+			info.time += parseInt(this.queue[i].duration);
 			if (this.queue[i].started)
 			{
 				info.time -= Math.floor((Date.now() - this.queue[i].started) / 1000);
